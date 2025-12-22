@@ -55,17 +55,16 @@ class Person {
 
 class Student extends Person {
   constructor(name: string, age: number, address: string) {
-    super(name, age, address)
+    super(name, age, address);
   }
 }
 const student1 = new Student("Mr. X", 20, "Dhaka");
-
 
 class Teacher extends Person {
   designation: string;
 
   constructor(name: string, age: number, address: string, designation: string) {
-    super(name, age, address)
+    super(name, age, address);
     this.designation = designation;
   }
   takeClass(numOfClass: number) {
@@ -74,4 +73,45 @@ class Teacher extends Person {
 }
 const teacher1 = new Teacher("Mx. Y", 40, "Dhaka", "S Teacher");
 
-// Type Guard Using typeof and in
+// Type Guard Using typeof and in | Narrowing
+// typeoff - type guard
+const add = (
+  param1: number | string,
+  param2: number | string
+): string | number => {
+  if (typeof param1 === "number" && typeof param2 === "number") {
+    return param1 + param2
+  } else {
+    return param1.toString() + param2.toString()
+  }
+};
+const result1 = add(4, 5)
+const result2 = add("4", "5")
+console.log(result1, result2)
+
+// In guard
+type NormalUser = {
+    name: string
+}
+type AdminUser = {
+    name: string;
+    role: 'admin'
+}
+const getUser = (user: NormalUser | AdminUser) => {
+    if('role' in user) {
+        console.log(`I am the ${user.role}`)
+    } else {
+        console.log(`I am ${user.name}`)
+    }
+}
+const normalUser: NormalUser = {
+    name: "Mr. User"
+}
+const adminlUser: AdminUser = {
+    name: "Mr. Admin",
+    role: 'admin'
+}
+getUser(normalUser)
+getUser(adminlUser)
+
+// Type guard using Instance of
