@@ -171,7 +171,7 @@ class BankAccount {
     this.id = id;
     this.name = name;
     this._balance = balance;
-    this._balance1 = _balance1
+    this._balance1 = _balance1;
   }
   public addMoney(amount: number) {
     return this._balance + amount;
@@ -181,9 +181,38 @@ class BankAccount {
   }
 }
 
-class StudentAccount extends BankAccount {
-
-}
+class StudentAccount extends BankAccount {}
 const poorPeopleAccount = new BankAccount(1, "Mr. Poor", 20, 52);
 const newBal = poorPeopleAccount.addMoney(50);
 const newBal1 = poorPeopleAccount.getBalance();
+
+// Getter and Setter
+
+class BankAccount1 {
+  readonly id: number;
+  public name: string;
+  private _balance: number;
+  protected _balance1: number;
+  constructor(id: number, name: string, balance: number, _balance1: number) {
+    this.id = id;
+    this.name = name;
+    this._balance = balance;
+    this._balance1 = _balance1;
+  }
+  //   public addMoney(amount: number) {
+  //     return this._balance + amount;
+  //   }
+  set deposite(amount: number) {
+    this._balance = this._balance + amount;
+  }
+  //   public getBalance() {
+  //     return this._balance;
+  //   }
+  get balance() {
+    return this._balance;
+  }
+}
+const poorPeople = new BankAccount1(2, "Mr. Y", 20, 56);
+poorPeople.deposite = 60
+const myBalance = poorPeople.balance;
+console.log(myBalance);
