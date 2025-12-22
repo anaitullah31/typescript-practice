@@ -115,3 +115,48 @@ getUser(normalUser)
 getUser(adminlUser)
 
 // Type guard using Instance of
+class Animal1 {
+    name: string;
+    species: string;
+    constructor(name: string, species: string){
+        this.name = name;
+        this.species = species
+    }
+    makeSound() {
+        console.log(`${this.name} is making sound`)
+    }
+}
+class Dog1 extends Animal1 {
+    constructor(name: string, species: string){
+        super(name, species)
+    }
+    makeBark() {
+        console.log("I am barking")
+    }
+}
+class Cat1 extends Animal1 {
+    constructor(name: string, species: string){
+        super(name, species)
+    }
+    makeMew() {
+        console.log("I am mewaing")
+    }
+}
+const isDog1 = (animal: Animal1): animal is Dog1 => {
+    return animal instanceof Dog1
+}
+const isCat1 = (animal: Animal1): animal is Cat1 => {
+    return animal instanceof Cat1
+}
+const getAnimal = (animal: Animal) => {
+    if(animal instanceof Dog1) {
+       return animal.makeBark()
+    } else if(animal instanceof Cat1) {
+       return animal.makeMew()
+    } else {
+       return animal.makeSound()
+    }
+}
+
+const dog1 = new Dog1('Dog', 'Doggggg')
+const cat1 = new Cat1('Cat', 'Catttttt')
