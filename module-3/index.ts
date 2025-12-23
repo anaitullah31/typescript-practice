@@ -213,27 +213,95 @@ class BankAccount1 {
   }
 }
 const poorPeople = new BankAccount1(2, "Mr. Y", 20, 56);
-poorPeople.deposite = 60
+poorPeople.deposite = 60;
 const myBalance = poorPeople.balance;
 console.log(myBalance);
 
 // Static in OOP
 class Counter {
-    static count: number = 0;
-    increment() {
-        return (Counter.count = Counter.count +1)
-    }
-    static decrement() {
-        return (Counter.count = Counter.count -1)
-    }
+  static count: number = 0;
+  increment() {
+    return (Counter.count = Counter.count + 1);
+  }
+  static decrement() {
+    return (Counter.count = Counter.count - 1);
+  }
 }
 
-const instance1 = new Counter()
-console.log(instance1.increment())
-console.log(instance1.increment())
-console.log(instance1.increment())
-const instance2 = new Counter()
-console.log(instance2.increment())
-console.log(instance2.increment())
+const instance1 = new Counter();
+console.log(instance1.increment());
+console.log(instance1.increment());
+console.log(instance1.increment());
+const instance2 = new Counter();
+console.log(instance2.increment());
+console.log(instance2.increment());
 
-console.log(Counter.decrement())
+console.log(Counter.decrement());
+
+// Polymorphism
+class Person2 {
+  getSleep() {
+    console.log(`I am sleeping for 8 hours per day`);
+  }
+}
+class Student2 extends Person2 {
+  getSleep() {
+    console.log(`I am sleeping for 7 hours per day`);
+  }
+}
+class Develoepr extends Person2 {
+  getSleep() {
+    console.log(`I am sleeping for 6 hours per day`);
+  }
+}
+
+const getSleepingHours = (param: Person2) => {
+  param.getSleep();
+};
+const person1 = new Person2();
+const person2 = new Student2();
+const person3 = new Develoepr();
+
+getSleepingHours(person1);
+getSleepingHours(person2);
+getSleepingHours(person3);
+
+class Shape {
+  getArea(): number {
+    return 0;
+  }
+}
+class Circle extends Shape {
+  radius: number;
+  constructor(radius: number) {
+    super();
+    this.radius = radius;
+  }
+  getArea(): number {
+    return Math.PI * (this.radius * this.radius);
+  }
+}
+class Rectangle extends Shape {
+  height: number;
+  width: number;
+  constructor(height: number, width: number) {
+    super();
+    this.height = height;
+    this.width = width;
+  }
+  getArea(): number {
+    return this.height * this.width;
+  }
+}
+
+const getShapeArea = (param: Shape) => {
+  console.log(param.getArea());
+};
+
+const shape1 = new Shape()
+const shape2 = new Circle(30)
+const shape3 = new Rectangle(52, 30)
+getShapeArea(shape1)
+getShapeArea(shape2)
+getShapeArea(shape3)
+
