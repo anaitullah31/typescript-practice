@@ -360,3 +360,32 @@ hondaCar.startEngine();
 hondaCar.stopEngine();
 hondaCar.move();
 
+// Encapsulation in OOP
+// Access modifiers
+class BankAccount3 {
+    public readonly id: number;
+    public name: string;
+    private _balance : number; // Encapsulation from child class and instance
+    constructor(id: number, name: string, _balance: number){
+        this.id = id;
+        this.name = name;
+        this._balance = _balance
+    }
+    public addDeposite(amount: number) {
+        this._balance = this._balance + amount;
+    }
+    private getBalance() {  // Encapsulation from child class and instance
+        return this._balance;
+    }
+    getHiddenMethod() {
+        return this.getBalance();
+    }
+}
+
+class StudentAccount2 extends BankAccount3 {
+    test() {
+
+    }
+}
+const poorPeopleAccount1 = new BankAccount3(12, 'Mr Poor', 60)
+
