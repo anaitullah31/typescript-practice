@@ -298,10 +298,65 @@ const getShapeArea = (param: Shape) => {
   console.log(param.getArea());
 };
 
-const shape1 = new Shape()
-const shape2 = new Circle(30)
-const shape3 = new Rectangle(52, 30)
-getShapeArea(shape1)
-getShapeArea(shape2)
-getShapeArea(shape3)
+const shape1 = new Shape();
+const shape2 = new Circle(30);
+const shape3 = new Rectangle(52, 30);
+getShapeArea(shape1);
+getShapeArea(shape2);
+getShapeArea(shape3);
+
+// Abstraction in OOP -
+// Abstraction By Interface
+interface Vehicle1 {
+  startEngine(): void;
+  stopEngine(): void;
+  move(): void;
+}
+
+class Car implements Vehicle1 {
+  startEngine(): void {
+    console.log("I am starting the car engine");
+  }
+  stopEngine(): void {
+    console.log("I am stopping the car engine");
+  }
+  move(): void {
+    console.log("I am moving the car");
+  }
+  test() {
+    console.log("I am just testing");
+  }
+}
+const toyotaCar = new Car();
+toyotaCar.startEngine();
+toyotaCar.stopEngine();
+toyotaCar.move();
+
+// Abstraction By Abstract class
+abstract class Car2 {
+  abstract startEngine(): void;
+  abstract stopEngine(): void;
+  abstract move(): void;
+  test() {
+    console.log("I am just testing");
+  }
+}
+
+class Toyota extends Car2 {
+  startEngine(): void {
+    console.log("I am starting the car engine");
+  }
+  stopEngine(): void {
+    console.log("I am stopping the car engine");
+  }
+  move(): void {
+    console.log("I am moving the car");
+  }
+
+}
+
+const hondaCar = new Toyota();
+hondaCar.startEngine();
+hondaCar.stopEngine();
+hondaCar.move();
 
